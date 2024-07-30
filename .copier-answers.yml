@@ -1,0 +1,12 @@
+_commit: e983d04
+_src_path: ../dbt-template/
+adapter: snowflake
+dbt_packages:
+- codegen
+- dbt_constraints
+- dbt_utils
+- elementary
+example_datasets:
+- accor
+profile_name: cube_example
+project_display_name: Cube Example
