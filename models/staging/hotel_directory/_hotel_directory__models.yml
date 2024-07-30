@@ -1,0 +1,248 @@
+version: 2
+
+models:
+  - name: stg_hotel_directory__breakfasts
+    description: all breakfasts available in hotels.
+    columns:
+      - name: hotel_id
+        description: the unique identifier of the hotel.
+
+      - name: restaurant_name
+        description: the name of the restaurant where the breakfast is served.
+
+      - name: breakfast_name
+        description: the name of the breakfast.
+
+      - name: breakfast_type_id
+        description: the unique identifier of the breakfast type.
+
+      - name: _loaded_at
+        description: the timestamp indicating when the record was ingested into snowflake.
+
+  - name: stg_hotel_directory__meeting_room_types
+    description: all meeting room types available in hotels.
+    columns:
+      - name: meeting_room_type_id
+        description: the unique identifier of the meeting room type.
+
+      - name: meeting_room_type_label
+        description: the label of the meeting room type.
+
+      - name: _loaded_at
+        description: the timestamp indicating when the record was ingested into snowflake.
+
+  - name: stg_hotel_directory__hotels
+    description: information about hotels.
+    columns:
+      - name: hotel_id
+        description: the unique identifier of the hotel.
+
+      - name: hotel_name
+        description: the name of the hotel.
+
+      - name: status
+        description: the status of the hotel (e.g. "open", "closed").
+
+      - name: country
+        description: the country where the hotel is located.
+
+      - name: city
+        description: the city where the hotel is located.
+
+      - name: street
+        description: the street where the hotel is located.
+
+      - name: gps_latitude
+        description: the latitude of the hotel's location.
+
+      - name: gps_longitude
+        description: the longitude of the hotel's location.
+
+      - name: _loaded_at
+        description: the timestamp indicating when the record was ingested into snowflake.
+
+  - name: stg_hotel_directory__pools
+    description: all pools available in hotels.
+    columns:
+      - name: hotel_id
+        description: the unique identifier of the hotel.
+
+      - name: pool_name
+        description: the name of the pool.
+
+      - name: pool_type
+        description: the type of the pool ("indoor" or "outdoor").
+
+      - name: _loaded_at
+        description: the timestamp indicating when the record was ingested into snowflake.
+
+  - name: stg_hotel_directory__fitness_centers
+    description: all fitness centers available in hotels.
+    columns:
+      - name: hotel_id
+        description: the unique identifier of the hotel.
+
+      - name: fitness_center_id
+        description: the unique identifier of the fitness center.
+
+      - name: fitness_center_name
+        description: the name of the fitness center.
+
+      - name: location
+        description: the location of the fitness center.
+
+      - name: _loaded_at
+        description: the timestamp indicating when the record was ingested into snowflake.
+
+  - name: stg_hotel_directory__spas
+    description: all spas available in hotels.
+    columns:
+      - name: hotel_id
+        description: the unique identifier of the hotel.
+
+      - name: spa_id
+        description: the unique identifier of the spa.
+
+      - name: spa_name
+        description: the name of the spa.
+
+      - name: location
+        description: the location of the spa.
+
+      - name: _loaded_at
+        description: the timestamp indicating when the record was ingested into snowflake.
+
+  - name: stg_hotel_directory__breakfast_types
+    description: all breakfast types available in hotels.
+    columns:
+      - name: breakfast_type_id
+        description: the unique identifier of the breakfast type.
+
+      - name: breakfast_type_label
+        description: the label of the breakfast type.
+
+      - name: _loaded_at
+        description: the timestamp indicating when the record was ingested into snowflake.
+
+  - name: stg_hotel_directory__parkings
+    description: all parkings available in hotels.
+    columns:
+      - name: hotel_id
+        description: the unique identifier of the hotel.
+
+      - name: parking_name
+        description: the name of the parking.
+
+      - name: parking_type
+        description: the type of the parking (e.g. "indoor_parking", "outdoor_parking").
+
+      - name: number_of_places
+        description: the number of parking places available.
+
+      - name: _loaded_at
+        description: the timestamp indicating when the record was ingested into snowflake.
+
+  - name: stg_hotel_directory__bars
+    description: all bars available in hotels.
+    columns:
+      - name: hotel_id
+        description: the unique identifier of the hotel.
+
+      - name: code
+        description: the code of the bar (unique within the hotel).
+
+      - name: bar_name
+        description: the name of the bar.
+
+      - name: number_of_seats
+        description: the number of seats available in the bar.
+
+      - name: has_air_conditioning
+        description: a boolean indicating whether the bar has air conditioning.
+
+      - name: _loaded_at
+        description: the timestamp indicating when the record was ingested into snowflake.
+
+  - name: stg_hotel_directory__restaurants
+    description: all restaurants available in hotels.
+    columns:
+      - name: hotel_id
+        description: the unique identifier of the hotel.
+
+      - name: restaurant_id
+        description: the unique identifier of the restaurant.
+
+      - name: restaurant_code
+        description: the code of the restaurant (unique within the hotel).
+
+      - name: restaurant_name
+        description: the name of the restaurant.
+
+      - name: number_of_seats
+        description: the number of seats available in the restaurant.
+
+      - name: _loaded_at
+        description: the timestamp indicating when the record was ingested into snowflake.
+
+  - name: stg_hotel_directory__accommodations
+    description: all accommodations available in hotels.
+    columns:
+      - name: hotel_id
+        description: the unique identifier of the hotel.
+
+      - name: accommodation_id
+        description: the unique identifier of the accommodation.
+
+      - name: accommocation_code
+        description: the code of the accommodation (unique within the hotel).
+
+      - name: accommodation_name
+        description: the name of the accommodation.
+
+      - name: max_occupancy
+        description: the maximum number of people that can stay in the accommodation.
+
+      - name: inventory_count
+        description: the number of available accommodations of this kind.
+
+      - name: classification_type
+        description: the classification type for this kind of accommodation (e.g. "room", "villa").
+
+      - name: surface_area_meters
+        description: the surface area of the accommodation in square meters.
+
+      - name: classification_standard
+        description: the classification standard for this kind of accommodation (e.g. "standard", "luxury").
+
+      - name: _loaded_at
+        description: the timestamp indicating when the record was ingested into snowflake.
+
+  - name: stg_hotel_directory__meeting_rooms
+    description: all meeting rooms available in hotels.
+    columns:
+      - name: hotel_id
+        description: the unique identifier of the hotel.
+
+      - name: meeting_room_id
+        description: the unique identifier of the meeting room.
+
+      - name: meeting_room_code
+        description: the code of the meeting room (unique within the hotel).
+
+      - name: meeting_room_name
+        description: the name of the meeting room.
+
+      - name: meeting_room_type_id
+        description: the unique identifier of the meeting room type.
+
+      - name: surface_area
+        description: the surface area of the meeting room.
+
+      - name: ceiling_height
+        description: the height of the ceiling in the meeting room.
+
+      - name: number_of_seats
+        description: the number of seats available in the meeting room.
+
+      - name: _loaded_at
+        description: the timestamp indicating when the record was ingested into snowflake.

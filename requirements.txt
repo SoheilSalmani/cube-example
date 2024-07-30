@@ -1,0 +1,4 @@
+dbt-core==1.8.4
+dbt-snowflake==1.8.3
+dvc==3.52.0
+dvc-gdrive==3.0.1

@@ -1,0 +1,8 @@
+packages:
+  - git: https://github.com/dbt-labs/dbt-codegen.git
+    revision: 171343d9aec904f1a5340355c265df195dfa0af6
+  - package: Snowflake-Labs/dbt_constraints
+    version: 0.6.3
+  - package: dbt-labs/dbt_utils
+    version: 1.2.0
+sha1_hash: 880434b635a05e85c81af07db1f93bb07c7b5d21

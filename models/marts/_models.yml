@@ -1,0 +1,358 @@
+version: 2
+
+models:
+  - name: accommodations
+    description: All accommodations available in hotels.
+    columns:
+      - name: hotel_id
+        description: The unique identifier of the hotel.
+        data_tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('hotels')
+              pk_column_name: hotel_id
+
+      - name: accommodation_id
+        description: The unique identifier of the accommodation.
+        data_tests:
+          - dbt_constraints.primary_key
+
+      - name: accommocation_code
+        description: The code of the accommodation (unique within the hotel).
+        data_tests:
+          - not_null
+
+      - name: accommodation_name
+        description: The name of the accommodation.
+        data_tests:
+          - not_null
+
+      - name: max_occupancy
+        description: The maximum number of people that can stay in the accommodation.
+        data_tests:
+          - not_null
+
+      - name: inventory_count
+        description: The number of available accommodations of this kind.
+        data_tests:
+          - not_null
+
+      - name: classification_type
+        description: The classification type for this kind of accommodation (e.g. "ROOM", "VILLA").
+
+      - name: surface_area_meters
+        description: The surface area of the accommodation in square meters.
+
+      - name: classification_standard
+        description: The classification standard for this kind of accommodation (e.g. "STANDARD", "LUXURY").
+        data_tests:
+          - accepted_values:
+              values:
+                - CLASSIC
+                - COMFORT
+                - DELUXE
+                - EXECUTIVE
+                - FAMILY
+                - HARMONY
+                - JUNIOR
+                - LUXURY
+                - OPERA
+                - PREMIER
+                - PRESIDENTIAL
+                - PRESTIGE
+                - PRIVILEGE
+                - ROYAL
+                - STANDARD
+                - SUPERIOR
+
+      - name: _loaded_at
+        description: The timestamp indicating when the record was ingested into Snowflake.
+
+  - name: bars
+    description: All bars available in hotels.
+    columns:
+      - name: hotel_id
+        description: The unique identifier of the hotel.
+        data_tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('hotels')
+              pk_column_name: hotel_id
+
+      - name: bar_id
+        description: The unique identifier of the bar.
+        data_tests:
+          - dbt_constraints.primary_key
+
+      - name: bar_code
+        description: The code of the bar (unique within the hotel).
+        data_tests:
+          - not_null
+
+      - name: bar_name
+        description: The name of the bar.
+        data_tests:
+          - not_null
+
+      - name: number_of_seats
+        description: The number of seats available in the bar.
+
+      - name: has_air_conditioning
+        description: A boolean indicating whether the bar has air conditioning.
+
+      - name: _loaded_at
+        description: The timestamp indicating when the record was ingested into Snowflake.
+
+  - name: breakfasts
+    description: All breakfasts available in hotels.
+    columns:
+      - name: hotel_id
+        description: The unique identifier of the hotel.
+        data_tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('hotels')
+              pk_column_name: hotel_id
+
+      - name: restaurant_name
+        description: The name of the restaurant where the breakfast is served.
+        data_tests:
+          - not_null
+
+      - name: breakfast_id
+        description: The unique identifier of the breakfast.
+        data_tests:
+          - dbt_constraints.primary_key
+
+      - name: breakfast_name
+        description: The name of the breakfast.
+        data_tests:
+          - not_null
+
+      - name: breakfast_type
+        description: The type of the breakfast.
+        data_tests:
+          - not_null
+
+  - name: fitness_centers
+    description: All fitness centers available in hotels.
+    columns:
+      - name: hotel_id
+        description: The unique identifier of the hotel.
+        data_tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('hotels')
+              pk_column_name: hotel_id
+
+      - name: fitness_center_id
+        description: The unique identifier of the fitness center.
+        data_tests:
+          - dbt_constraints.primary_key
+
+      - name: fitness_center_name
+        description: The name of the fitness center.
+        data_tests:
+          - not_null
+
+      - name: location
+        description: The location of the fitness center.
+        data_tests:
+          - accepted_values:
+              values: [OFF_SITE, ON_SITE]
+
+      - name: _loaded_at
+        description: The timestamp indicating when the record was ingested into Snowflake.
+
+  - name: hotels
+    description: Information about hotels.
+    columns:
+      - name: hotel_id
+        description: The unique identifier of the hotel.
+        data_tests:
+          - dbt_constraints.primary_key
+
+      - name: hotel_name
+        description: The name of the hotel.
+        data_tests:
+          - not_null
+
+      - name: status
+        description: The status of the hotel (e.g. "OPEN", "CLOSED").
+        data_tests:
+          - accepted_values:
+              values: [OPEN, DELETED]
+
+      - name: country
+        description: The country where the hotel is located.
+
+      - name: city
+        description: The city where the hotel is located.
+
+      - name: street
+        description: The street where the hotel is located.
+
+      - name: gps_latitude
+        description: The latitude of the hotel's location.
+
+      - name: gps_longitude
+        description: The longitude of the hotel's location.
+
+      - name: _loaded_at
+        description: The timestamp indicating when the record was ingested into Snowflake.
+
+  - name: meeting_rooms
+    description: All meeting room types available in hotels.
+    columns:
+      - name: hotel_id
+        description: The unique identifier of the hotel.
+        data_tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('hotels')
+              pk_column_name: hotel_id
+
+      - name: meeting_room_id
+        description: The unique identifier of the meeting room.
+        data_tests:
+          - dbt_constraints.primary_key
+
+      - name: meeting_room_code
+        description: The code of the meeting room (unique within the hotel).
+        data_tests:
+          - not_null
+
+      - name: meeting_room_name
+        description: The name of the meeting room.
+        data_tests:
+          - not_null
+
+      - name: meeting_room_type
+        description: The type of the meeting room.
+        data_tests:
+          - not_null
+
+      - name: surface_area
+        description: The surface area of the meeting room.
+
+      - name: ceiling_height
+        description: The height of the ceiling in the meeting room.
+
+      - name: number_of_seats
+        description: The number of seats available in the meeting room.
+
+  - name: parkings
+    description: All parkings available in hotels.
+    columns:
+      - name: hotel_id
+        description: The unique identifier of the hotel.
+        data_tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('hotels')
+              pk_column_name: hotel_id
+
+      - name: parking_id
+        description: The unique identifier of the parking.
+        data_tests:
+          - dbt_constraints.primary_key
+
+      - name: parking_name
+        description: The name of the parking.
+        data_tests:
+          - not_null
+
+      - name: parking_type
+        description: The type of the parking (e.g. "INDOOR_PARKING", "OUTDOOR_PARKING").
+        data_tests:
+          - accepted_values:
+              values: [INDOOR_PARKING, OUTDOOR_PARKING, ENCLOSED_OUTDOOR_PARKING]
+
+      - name: number_of_places
+        description: The number of parking places available.
+
+      - name: _loaded_at
+        description: The timestamp indicating when the record was ingested into Snowflake.
+
+  - name: pools
+    description: All pools available in hotels.
+    columns:
+      - name: hotel_id
+        description: The unique identifier of the hotel.
+        data_tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('hotels')
+              pk_column_name: hotel_id
+
+      - name: pool_id
+        description: The unique identifier of the pool.
+        data_tests:
+          - dbt_constraints.primary_key
+
+      - name: pool_name
+        description: The name of the pool.
+        data_tests:
+          - not_null
+
+      - name: pool_type
+        description: The type of the pool ("INDOOR" or "OUTDOOR").
+        data_tests:
+          - accepted_values:
+              values: [INDOOR, OUTDOOR]
+
+      - name: _loaded_at
+        description: The timestamp indicating when the record was ingested into Snowflake.
+
+  - name: restaurants
+    description: All restaurants available in hotels.
+    columns:
+      - name: hotel_id
+        description: The unique identifier of the hotel.
+        data_tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('hotels')
+              pk_column_name: hotel_id
+
+      - name: restaurant_id
+        description: The unique identifier of the restaurant.
+        data_tests:
+          - dbt_constraints.primary_key
+
+      - name: restaurant_code
+        description: The code of the restaurant (unique within the hotel).
+        data_tests:
+          - not_null
+
+      - name: restaurant_name
+        description: The name of the restaurant.
+        data_tests:
+          - not_null
+
+      - name: number_of_seats
+        description: The number of seats available in the restaurant.
+
+      - name: _loaded_at
+        description: The timestamp indicating when the record was ingested into Snowflake.
+
+  - name: spas
+    description: All spas available in hotels.
+    columns:
+      - name: hotel_id
+        description: The unique identifier of the hotel.
+        data_tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('hotels')
+              pk_column_name: hotel_id
+
+      - name: spa_id
+        description: The unique identifier of the spa.
+        data_tests:
+          - dbt_constraints.primary_key
+
+      - name: spa_name
+        description: The name of the spa.
+        data_tests:
+          - not_null
+
+      - name: location
+        description: The location of the spa.
+        data_tests:
+          - accepted_values:
+              values: [ON_SITE, OFF_SITE]
+
+      - name: _loaded_at
+        description: The timestamp indicating when the record was ingested into Snowflake.

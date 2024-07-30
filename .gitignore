@@ -1,0 +1,15 @@
+# Virtual environments (Python)
+/.venv/
+/.direnv/
+
+# Compiled files (dbt)
+target/
+
+# 3rd-party packages (dbt)
+dbt_packages/
+
+# Logs (dbt)
+logs/
+
+# Input data
+data/
